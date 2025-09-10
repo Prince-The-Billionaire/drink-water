@@ -1,14 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import Alarm from "@/models/Alarm";
 
-interface RouteParams {
-  params: {
-    id: string;
-  };
-}
-
-export async function PATCH(req: Request, { params }: RouteParams) {
+export async function PATCH(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   await connectDB();
   const body = await req.json();
 
